@@ -89,9 +89,29 @@ function findMissingNumber(arr) {
     return expSum - sum
 }
   
-  console.log(findMissingNumber([1, 2, 4, 6, 3, 7, 8])); // Output should be 5
-  console.log(findMissingNumber([1, 3, 4, 5])); // Output should be 2
+//   console.log(findMissingNumber([1, 2, 4, 6, 3, 7, 8])); // Output should be 5
+//   console.log(findMissingNumber([1, 3, 4, 5])); // Output should be 2
   
+
+// Given an array of numbers nums and a target number target,
+// return indices of the two numbers such that they add up to the target.
+// You may assume that each input would have exactly one solution, and you 
+// may not use the same element twice. You can return the answer in any order.
+
+function twoSum(nums, target) {
+    for (let i = 0; i < nums.length; i++) {
+        for (let j = i + 1; j < nums.length; j++) {
+            console.log(`i=${i} and j=${j}`)
+            if (nums[i] + nums[j] == target) {
+                return [i,j]
+            }
+        }
+    }
+}
+
+console.log(twoSum([2, 7, 11, 15], 9)); // Output should be [0, 1] (nums[0] + nums[1] equals 9)
+console.log(twoSum([3, 2, 4], 6)); // Output should be [1, 2] (nums[1] + nums[2] equals 6)
+console.log(twoSum([3, 3], 6)); // Output should be [0, 1] (nums[0] + nums[1] equals 6)
 
 
 
