@@ -214,10 +214,26 @@ function removeDuplicates(nums) {
     return noDuplicates
   }
   
-  console.log(removeDuplicates([1, 2, 3, 2, 4, 5, 4, 7, 8, 9])); // Output should be [1, 2, 3, 4, 5, 7, 8, 9]
-  console.log(removeDuplicates([3, 7, 1, 9, 5])); // Output should be [3, 7, 1, 9, 5] (no duplicates)
-  console.log(removeDuplicates([1, 2, 3, 4, 5])); // Output should be [1, 2, 3, 4, 5] (no duplicates)
-  
+//   console.log(removeDuplicates([1, 2, 3, 2, 4, 5, 4, 7, 8, 9])); // Output should be [1, 2, 3, 4, 5, 7, 8, 9]
+//   console.log(removeDuplicates([3, 7, 1, 9, 5])); // Output should be [3, 7, 1, 9, 5] (no duplicates)
+//   console.log(removeDuplicates([1, 2, 3, 4, 5])); // Output should be [1, 2, 3, 4, 5] (no duplicates)
+
+function returnDuplicates(nums) {
+    let duplicates = [];
+    for (let i = 0; i < nums.length; i++) {
+        for (let j = i + 1; j < nums.length; j++) {
+            if (nums[i] === nums[j] && !duplicates.includes(nums[i])) {
+                duplicates.push(nums[i]);
+            }
+        }
+    }
+    return duplicates
+}
+
+console.log(returnDuplicates([1, 2, 3, 2, 4, 5, 4, 7, 8, 9])); // Output should be 2 (2 and 4 are duplicates)
+console.log(returnDuplicates([3, 7, 1, 9, 5])); // Output should be 0 (no duplicates)
+console.log(returnDuplicates([1, 2, 3, 4, 5])); // Output should be 0 (no duplicates)
+
 
 
 
