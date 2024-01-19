@@ -109,13 +109,52 @@ function twoSum(nums, target) {
     }
 }
 
-console.log(twoSum([2, 7, 11, 15], 9)); // Output should be [0, 1] (nums[0] + nums[1] equals 9)
-console.log(twoSum([3, 2, 4], 6)); // Output should be [1, 2] (nums[1] + nums[2] equals 6)
-console.log(twoSum([3, 3], 6)); // Output should be [0, 1] (nums[0] + nums[1] equals 6)
+// console.log(twoSum([2, 7, 11, 15], 9)); // Output should be [0, 1] (nums[0] + nums[1] equals 9)
+// console.log(twoSum([3, 2, 4], 6)); // Output should be [1, 2] (nums[1] + nums[2] equals 6)
+// console.log(twoSum([3, 3], 6)); // Output should be [0, 1] (nums[0] + nums[1] equals 6)
 
+/*
+Problem: Valid Parentheses
 
+Given a string containing just the characters '(', ')', '{', '}', '[' and ']', 
+determine if the input string is valid.
 
+An input string is valid if:
 
+Open brackets must be closed by the same type of brackets.
+Open brackets must be closed in the correct order.
+*/
+
+function isValidParentheses(s) {
+    // 
+}
+
+// console.log(isValidParentheses("()")); // Output should be true
+// console.log(isValidParentheses("()[]{}")); // Output should be true
+// console.log(isValidParentheses("(]")); // Output should be false
+// console.log(isValidParentheses("([)]")); // Output should be false
+// console.log(isValidParentheses("{[]}")); // Output should be true
+
+/*
+Problem: Find the Maximum Element
+
+Write a function findMax that takes an array of 
+numbers as input and returns the maximum element in the array. 
+Do not use built-in functions like Math.max or Array.prototype.reduce.
+*/
+
+function findMax(nums) {
+    let maxNum = 0;
+    for (let i = 0; i < nums.length; i++) {
+        if (nums[i] > maxNum) {
+            maxNum = nums[i];
+        }
+    }
+    return maxNum
+}
+
+console.log(findMax([3, 7, 1, 9, 5])); // Output should be 9
+console.log(findMax([-2, 0, 8, -5])); // Output should be 8
 
 
 
