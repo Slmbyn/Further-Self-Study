@@ -198,3 +198,26 @@ function countDuplicates(nums) {
 // console.log(countDuplicates([1, 2, 3, 2, 4, 5, 4, 7, 8, 9])); // Output should be 2 (2 and 4 are duplicates)
 // console.log(countDuplicates([3, 7, 1, 9, 5])); // Output should be 0 (no duplicates)
 // console.log(countDuplicates([1, 2, 3, 4, 5])); // Output should be 0 (no duplicates)
+
+
+/*
+Problem: Remove Duplicates
+
+Write a function removeDuplicates that takes an array of 
+numbers as input and returns a new array with duplicate elements removed. 
+The order of elements should be preserved.
+*/
+
+function removeDuplicates(nums) {
+    const numsSet = new Set(nums)
+    const noDuplicates = Array.from(numsSet)
+    return noDuplicates
+  }
+  
+  console.log(removeDuplicates([1, 2, 3, 2, 4, 5, 4, 7, 8, 9])); // Output should be [1, 2, 3, 4, 5, 7, 8, 9]
+  console.log(removeDuplicates([3, 7, 1, 9, 5])); // Output should be [3, 7, 1, 9, 5] (no duplicates)
+  console.log(removeDuplicates([1, 2, 3, 4, 5])); // Output should be [1, 2, 3, 4, 5] (no duplicates)
+  
+
+
+
