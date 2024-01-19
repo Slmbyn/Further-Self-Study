@@ -153,8 +153,48 @@ function findMax(nums) {
     return maxNum
 }
 
-console.log(findMax([3, 7, 1, 9, 5])); // Output should be 9
-console.log(findMax([-2, 0, 8, -5])); // Output should be 8
+// console.log(findMax([3, 7, 1, 9, 5])); // Output should be 9
+// console.log(findMax([-2, 0, 8, -5])); // Output should be 8
+
+/*
+Problem: Count Duplicates
+
+Write a function countDuplicates that takes an array of numbers 
+as input and returns the count of duplicate elements in the array.
+*/
+
+function countDuplicates(nums) {
+    let duplicates = 0;
+    // nested for loops thru nums
+    for ( let i = 0; i < nums.length; i++) {
+        for (let j = i + 1; j < nums.length; j++) {
+            if (nums[i] === nums[j]) {
+                duplicates++;
+            }
+        }
+    }
+    return duplicates
+}
+
+// BETTER WAY:
+
+function countDuplicates(nums) {
+    let duplicates = 0;
+    let counted = [];
+
+    for (let i = 0; i < nums.length; i++) {
+        for (let j = i + 1; j < nums.length; j++) {
+            if (nums[i] === nums[j] && !counted.includes(nums[i])) {
+                duplicates++;
+                counted.push(nums[i]);
+            }
+        }
+    }
+
+    return duplicates;
+}
 
 
-
+// console.log(countDuplicates([1, 2, 3, 2, 4, 5, 4, 7, 8, 9])); // Output should be 2 (2 and 4 are duplicates)
+// console.log(countDuplicates([3, 7, 1, 9, 5])); // Output should be 0 (no duplicates)
+// console.log(countDuplicates([1, 2, 3, 4, 5])); // Output should be 0 (no duplicates)
