@@ -94,7 +94,7 @@ def numbered (s):
         numbered_string.append(i)
         # turn count into a string
         count_as_string = str(count)
-        # take the idx+1 of the item from input and append that into the empty string
+        # take the idx+1 of the item from input and append that into the empty array
         numbered_string.append(count_as_string)
         # increase the count
         count += 1
@@ -103,6 +103,39 @@ def numbered (s):
     # after the loop, return the created string
     return result_string
 
-output = "a1a2i3o4u5g6n7l8r9s10t11"
-print(output)
-print(numbered("aaiougnlrst"))
+# output = "a1a2i3o4u5g6n7l8r9s10t11"
+# print(output)
+# print(numbered("aaiougnlrst"))
+
+def sum_branches(arr):
+    right_branch = []
+    left_branch = []
+    for num, idx in enumerate(arr):
+#     odd indexes get pushed into left branch
+        if idx % 2 != 0:
+            right_branch.append(num)
+#     even indexes go to the right branch
+        if idx % 2 == 0:
+            left_branch.append(num)
+#     remove negative numbers
+    for num in right_branch:
+        if num < 0:
+            right_branch.remove(num)
+    for num in left_branch:
+        if num < 0:
+            left_branch.remove(num)
+#     sum each branch
+    def add(x,y):
+        return x + y
+    sum_of_right = reduce(add, right_branch)
+    sum_of_left = reduce(add, left_branch)
+#     if arr.length=0 or if branch sums are equal, return 0
+    if len(arr) == 0 or sum_of_right == sum_of_left:
+        return 0
+#    else, return the larger branch
+    if sum_of_right > sum_of_left:
+        return "Right"
+    if sum_of_right < sum_of_left:
+        return "Left"  
+    
+print(sum_branches([3,6,2,9,-1,10]))
