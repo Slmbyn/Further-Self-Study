@@ -246,9 +246,81 @@ function returnDuplicatesWithSet(nums) {
 }
 
 
-console.log(returnDuplicates([1, 2, 3, 2, 4, 5, 4, 7, 8, 9])); // Output should be 2 (2 and 4 are duplicates)
-console.log(returnDuplicates([3, 7, 1, 9, 5])); // Output should be 0 (no duplicates)
-console.log(returnDuplicates([1, 2, 3, 4, 5])); // Output should be 0 (no duplicates)
+// console.log(returnDuplicates([1, 2, 3, 2, 4, 5, 4, 7, 8, 9])); // Output should be 2 (2 and 4 are duplicates)
+// console.log(returnDuplicates([3, 7, 1, 9, 5])); // Output should be 0 (no duplicates)
+// console.log(returnDuplicates([1, 2, 3, 4, 5])); // Output should be 0 (no duplicates)
+
+/*
+Problem: Rotate Array
+
+Write a function rotateArray that takes an array of numbers and 
+a number k as input and rotates the array to the right by k steps.
+
+For example, if the input array is [1, 2, 3, 4, 5] and k is 2, the output should be [4, 5, 1, 2, 3].
+*/
+
+function rotateArray(nums, k) {
+    if (k != 0 && k < nums.length){
+        const sliced = nums.slice(k + 1,nums.length)
+        const shiftedArray = nums.unshift(sliced)
+        const flatNums = nums.flat()
+        // remove sliced elements
+        
+        return flatNums
+    }
+}
+  
+//   console.log(rotateArray([1, 2, 3, 4, 5], 2)); // Output should be [4, 5, 1, 2, 3]
+//   console.log(rotateArray([3, 7, 1, 9, 5], 3)); // Output should be [1, 9, 5, 3, 7]
+
+
+/*
+Problem: Sum of Two
+
+Write a function sumOfTwo that takes two arrays of numbers 
+and a target number as input and returns true if there exist 
+two numbers, one from each array, that add up to the target number. 
+Otherwise, return false.
+*/
+
+function sumOfTwo(nums1, nums2, target) {
+    for ( let i = 0; i < nums1.length; i++) {
+        for( let j = 0; j < nums2.length; j++) {
+            if (nums1[i] + nums2[j] == target) {
+                return true
+            }
+        }
+    } return false
+}
+
+  console.log(sumOfTwo([1, 2, 3], [4, 5, 6], 8)); // Output should be true (3 + 5 = 8)
+  console.log(sumOfTwo([1, 2, 3], [4, 5, 6], 12)); // Output should be false (no pair adds up to 12)
+
+
+
+  let leftArr = [];
+  let rightArr = [];
+  // remove all -1
+  const nonNegArr = arr.filter(item => item !== -1);
+  // loop thru nonNegArr and push alternating values into each arrays starting at index 1
+  for (let i=1; i < nonNegArr.length; i++) {
+       // even index numbers go right
+      if ( i % 2 === 0) {
+          rightArr.push(nonNegArr[i]);
+      } else {
+          leftArr.push(nonNegArr[i]);
+      }
+  }
+  // sum each and return left/right
+  const leftSum = leftArr.reduce((acc, curr) => acc + curr, 0);
+  const rightSum = rightArr.reduce((acc, curr) => acc + curr, 0)
+  if (leftSum > rightSum) {
+      return 'Left';
+  } else if(leftSum < rightSum) {
+      return 'Right';
+  } else {
+      return "";
+  }
 
 
 
