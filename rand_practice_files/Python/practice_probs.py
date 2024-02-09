@@ -127,7 +127,7 @@ def sum_branches(arr):
 #     sum each branch
     def add(x,y):
         return x + y
-    sum_of_right = reduce(add, right_branch)
+    sum_of_right = reduce(lambda x,y: x + y, right_branch, 0)
     sum_of_left = reduce(add, left_branch)
 #     if arr.length=0 or if branch sums are equal, return 0
     if len(arr) == 0 or sum_of_right == sum_of_left:
@@ -138,4 +138,20 @@ def sum_branches(arr):
     if sum_of_right < sum_of_left:
         return "Left"  
     
-print(sum_branches([3,6,2,9,-1,10]))
+# print(sum_branches([3,6,2,9,-1,10]))
+    
+def fizzBuzz(n):
+    if n % 3 == 0 and n % 5 == 0:
+        print('Fizzbuzz')
+        # return 'Fizzbuzz'
+    elif n % 3 == 0:
+        print('Fizz')
+        # return 'Fizz'
+    elif n % 5 == 0:
+        print('Buzz')
+        # return 'Buzz'
+    else:
+        print(n)
+        # return n
+
+print(fizzBuzz(1))
