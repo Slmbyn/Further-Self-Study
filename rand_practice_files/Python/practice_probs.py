@@ -1,3 +1,5 @@
+import time
+
 # # sum of 2 digits
 # def sum_of_two (a, b):
 #     return a + b
@@ -154,4 +156,22 @@ def fizzBuzz(n):
         print(n)
         # return n
 
-print(fizzBuzz(1))
+# print(fizzBuzz(1))
+
+def findRestaurant(list1, list2):
+    start_time = time.time()
+    sums = len(list1) + len(list2)
+    common_strings = []
+    for i in range(len(list1)):
+        for j in range(len(list2)):
+            if list1[i] == list2[j]:
+                if i + j == sums:
+                    common_strings.append(list1[i]) #add to common_strings list
+                elif i + j < sums:
+                    common_strings.clear()
+                    common_strings.append(list1[i]) #add to common_strings list
+                    sums = i + j # and change the value of sums
+    end_time = time.time()
+    print(f"Runtime: {1000 * (end_time - start_time):.6f} milliseconds")
+    return common_strings
+print(findRestaurant(["Shogun","Tapioca Express","Burger King","KFC"],["Piatti","The Grill at Torrey Pines","Hungry Hunter Steakhouse","Shogun"]))
