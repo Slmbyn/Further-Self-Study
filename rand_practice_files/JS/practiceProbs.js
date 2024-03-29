@@ -394,12 +394,22 @@ function average(list) {
 // console.log(average([1, 2, 3, 4, 5]))
 
 function commonElements( listOne, listTwo) {
+    // let commonEls = []
+    // for (i=0; i < listOne.length; i++){
+    //     for (j=0; j < listTwo.length; j++) {
+    //         if (listOne[i] == listTwo[j] && !commonEls.includes(listOne[i])) {
+    //             commonEls.push(listOne[i])
+    //         }
+    //     }
+    // }
+    // return commonEls
+
+    // OR
+
     let commonEls = []
     for (i=0; i < listOne.length; i++){
-        for (j=0; j < listTwo.length; j++) {
-            if (listOne[i] == listTwo[j] && !commonEls.includes(listOne[i])) {
-                commonEls.push(listOne[i])
-            }
+        if (listTwo.includes(listOne[i]) && !commonEls.includes(listOne[i])) {
+            commonEls.push(listOne[i])
         }
     }
     return commonEls
