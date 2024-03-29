@@ -366,13 +366,30 @@ const solution = (array) => {
 };
 
 const input1 = [3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5];
-console.log(solution(input1));
+// console.log(solution(input1));
 
 const input2 = [8, 4, 2, 7, 1, 9, 5, 3, 6];
-console.log(solution(input2));
+// console.log(solution(input2));
 
 const input3 = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
-console.log(solution(input3));
+// console.log(solution(input3));
 
 const input4 = [2, 3, 1, 4, 5];
-console.log(solution(input4));
+// console.log(solution(input4));
+
+
+function reverseTheString(string) {
+    let newString = '';
+    for ( let i = 0; i < string.length; i++ ) {
+        
+    }
+}
+
+function average(list) {
+    const length = list.length
+    const sum = list.reduce((a,b) => a + b)
+    return sum / length
+}
+
+// console.log(average([1, 2, 3, 4, 5]))
+
