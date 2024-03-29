@@ -393,3 +393,18 @@ function average(list) {
 
 // console.log(average([1, 2, 3, 4, 5]))
 
+function commonElements( listOne, listTwo) {
+    let commonEls = []
+    for (i=0; i < listOne.length; i++){
+        for (j=0; j < listTwo.length; j++) {
+            if (listOne[i] == listTwo[j] && !commonEls.includes(listOne[i])) {
+                commonEls.push(listOne[i])
+            }
+        }
+    }
+    return commonEls
+}
+
+list1 = [1, 2, 3, 4, 5]
+list2 = [4, 5, 6, 7, 8]
+console.log(commonElements(list1, list2))
