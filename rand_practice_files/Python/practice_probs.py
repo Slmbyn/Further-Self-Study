@@ -1,4 +1,5 @@
 import time
+from memory_profiler import profile
 
 # # sum of 2 digits
 # def sum_of_two (a, b):
@@ -158,8 +159,8 @@ def fizzBuzz(n):
 
 # print(fizzBuzz(1))
 
+# @profile
 def findRestaurant(list1, list2):
-    start_time = time.time()
     sums = len(list1) + len(list2)
     common_strings = []
     for i in range(len(list1)):
@@ -171,7 +172,131 @@ def findRestaurant(list1, list2):
                     common_strings.clear()
                     common_strings.append(list1[i]) #add to common_strings list
                     sums = i + j # and change the value of sums
-    end_time = time.time()
-    print(f"Runtime: {1000 * (end_time - start_time):.6f} milliseconds")
     return common_strings
-print(findRestaurant(["Shogun","Tapioca Express","Burger King","KFC"],["Piatti","The Grill at Torrey Pines","Hungry Hunter Steakhouse","Shogun"]))
+
+
+start_time = time.time()
+result = findRestaurant(["Shogun","Tapioca Express","Burger King","KFC"],["Piatti","The Grill at Torrey Pines","Hungry Hunter Steakhouse","Shogun"])
+end_time = time.time()
+
+
+# print(f"Runtime: {1000 * (end_time - start_time):.6f} millisecondss")
+# print(result)
+
+
+sample_json = [
+    {
+        "title": "Baby (Feat. Ludacris) - Justin Bieber",
+        "description": "Baby (Feat. Ludacris) by Justin Bieber on Grooveshark",
+        "link": "http://listen.grooveshark.com/s/Baby+Feat+Ludacris+/2Bqvdq",
+        "pubDate": "Wed, 28 Apr 2010 02:37:53 -0400",
+        "pubTime": 1272436673,
+        "TinyLink": "http://tinysong.com/d3wI",
+        "SongID": "24447862",
+        "SongName": "Baby (Feat. Ludacris)",
+        "ArtistID": "1118876",
+        "ArtistName": "Justin Bieber",
+        "AlbumID": "4104002",
+        "AlbumName": "My World (Part II);\nhttp://tinysong.com/gQsw",
+        "LongLink": "11578982",
+        "GroovesharkLink": "11578982",
+        "Link": "http://tinysong.com/d3wI"
+    },
+    {
+        "title": "Feel Good Inc - Gorillaz",
+        "description": "Feel Good Inc by Gorillaz on Grooveshark",
+        "link": "http://listen.grooveshark.com/s/Feel+Good+Inc/1UksmI",
+        "pubDate": "Wed, 28 Apr 2010 02:25:30 -0400",
+        "pubTime": 1272435930
+    }
+]
+
+def get_keys(sample_json):
+    for i in range(len(sample_json)):
+        diction = sample_json[i]
+        for key in diction:
+            value = diction[str(key)]
+            return value
+
+# print(get_keys(sample_json))
+# print(f"key is: {key}")
+# val = key[1]
+# print(f"val is: {val}")
+# # print(val)
+
+def reverse_string(string):
+    new_string = ''.join(reversed(string))
+    return new_string
+
+# print(reverse_string("hello"))  # Output should be "olleh"
+# print(reverse_string("python"))  # Output should be "nohtyp"
+# print(reverse_string(""))  # Output should be ""
+
+
+def is_palindrome(string):
+    new_string = ''.join(reversed(string))
+    if new_string == string:
+        return True
+    return False
+
+# print(is_palindrome("radar"))  # Output should be True
+# print(is_palindrome("hello"))  # Output should be False
+# print(is_palindrome("A man, a plan, a canal, Panama"))  # Output should be True
+
+# def count_vowels(string):
+#     counter = 0
+#     vowels = ['a','e','i','o','u']
+#     for letter in string:
+#         for vowel in vowels:
+#             if letter.lower() == vowel:
+#                 counter += 1
+#     return counter
+
+def count_vowels(string):
+    vowels = ['a','e','i','o','u']
+    counter = 0
+    for letter in string:
+        if letter.lower() in vowels:
+            counter += 1
+    return counter
+
+# print(count_vowels("hello"))  # Output should be 2
+# print(count_vowels("Python"))  # Output should be 1
+# print(count_vowels("OpenAI"))  # Output should be 4
+# print(count_vowels(""))  # Output should be 0
+
+def average(list):
+    # get length
+    length = len(list)
+    # sum the list
+    def add(x,y):
+        return x + y
+    sum = reduce(add, list)
+    # divide the sum by the length
+    return sum / length
+
+def avg(list):
+    return sum(list) / len(list)
+
+# print(avg([1, 2, 3, 4, 5]))
+
+def common_elements(list_one, list_two):
+    # common = []
+    # for list_one_element in list_one:
+    #     for list_two_element in list_two:
+    #         if list_one_element == list_two_element and list_one_element not in common:
+    #             common.append(list_one_element)
+    # return common
+
+    # OR
+    
+    common = []
+    for element in list1:
+        if element in list2 and element not in common:
+            common.append(element)
+    return common
+
+
+list1 = [1, 2, 3, 4, 5]
+list2 = [4, 5, 6, 7, 8]
+print(common_elements(list1, list2))

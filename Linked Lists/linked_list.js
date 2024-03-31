@@ -1,4 +1,3 @@
-// Singly Linked List
 
 class Node {
     constructor(data) {
