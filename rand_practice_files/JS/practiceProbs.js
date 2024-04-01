@@ -417,4 +417,23 @@ function commonElements( listOne, listTwo) {
 
 list1 = [1, 2, 3, 4, 5]
 list2 = [4, 5, 6, 7, 8]
-console.log(commonElements(list1, list2))
+// console.log(commonElements(list1, list2))
+
+function findDuplicates(nums) {
+    let duplicates = []
+    for (let i = 0; i < nums.length; i++){
+        for (let j = i+1; j<nums.length; j++){
+            if (nums[i] === nums[j] && !duplicates.includes(nums[i])) {
+                duplicates.push(nums[i])
+            }
+        }
+    }
+    return duplicates
+}
+
+// Test cases
+console.log(findDuplicates([1, 2, 3, 4, 4, 5, 5, 6])); // Output: [4, 5]
+console.log(findDuplicates([1, 2, 3, 4, 5]));         // Output: []
+console.log(findDuplicates([]));                      // Output: []
+console.log(findDuplicates([1, 2, 2, 1, 5, 5, 5, 8]));// Output: [1, 2, 5]
+console.log(findDuplicates('Hello'));                 // Output: [ 'L' ]

@@ -299,4 +299,54 @@ def common_elements(list_one, list_two):
 
 list1 = [1, 2, 3, 4, 5]
 list2 = [4, 5, 6, 7, 8]
-print(common_elements(list1, list2))
+# print(common_elements(list1, list2))
+
+def find_duplicates(nums) -> list[int]:
+    
+    # if len(nums) <= 0:
+    #     return 'List is Empty'
+    
+    duplicates = []
+    # for i, val_one in enumerate(nums):
+    #     for j,val_two in enumerate(nums):
+    #         if nums[i] == nums[j] and i != j and nums[i] not in duplicates:
+    #             duplicates.append(nums[i])
+    
+    for i in range(len(nums)):
+        for j in range(i+1, len(nums)):
+            if nums[i] == nums[j] and nums[i] not in duplicates:
+                duplicates.append(nums[i])
+    
+    return duplicates
+
+# print(find_duplicates([1, 2, 3, 4, 4, 5, 5, 6]))
+# print(find_duplicates([1, 2, 3, 4, 5]))
+# print(find_duplicates([]))
+# print(find_duplicates([1,2,2,1,5,5,5,8]))
+# print(find_duplicates('HeLLo'))
+
+# MY WRONG ATTEMPT
+def capitalize_words(string):
+    #  split string into a list at the spaces
+    words = string.split()
+    #  loop thru the list and capitalize the 0 index
+    for word in words:
+        word[0].upper()
+    #  join the list into a string
+    capitalized_words = ' '.join(words)
+    return capitalize_words
+
+# CHATGPT'S SOLUTION:
+def capitalizeWords(s):
+    # Split the input string into words
+    words = s.split()
+    
+    # Capitalize the first letter of each word
+    capitalized_words = [word.capitalize() for word in words]
+    
+    # Join the capitalized words back into a string
+    return ' '.join(capitalized_words)
+
+print(capitalize_words("hello world"))
+print(capitalize_words("the quick brown fox"))
+print(capitalize_words("what's up, doc?"))
