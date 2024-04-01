@@ -350,3 +350,19 @@ def capitalizeWords(s):
 print(capitalize_words("hello world"))
 print(capitalize_words("the quick brown fox"))
 print(capitalize_words("what's up, doc?"))
+
+def zigzags(numbers):
+    if len(numbers) == 0:
+        return [0]
+        
+    zigs = []
+    for i in range(len(numbers)-2):
+        if numbers[i+2]:
+            if numbers[i] > numbers[i+1] and numbers[i+1] < numbers[i+2]:
+                zigs.append(1)
+            elif numbers[i] < numbers[i+1] and numbers[i+1] > numbers[i+2]:
+                zigs.append(1)
+            else:
+                zigs.append(0)
+            
+    return zigs

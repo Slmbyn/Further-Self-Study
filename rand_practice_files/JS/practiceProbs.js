@@ -432,8 +432,27 @@ function findDuplicates(nums) {
 }
 
 // Test cases
-console.log(findDuplicates([1, 2, 3, 4, 4, 5, 5, 6])); // Output: [4, 5]
-console.log(findDuplicates([1, 2, 3, 4, 5]));         // Output: []
-console.log(findDuplicates([]));                      // Output: []
-console.log(findDuplicates([1, 2, 2, 1, 5, 5, 5, 8]));// Output: [1, 2, 5]
-console.log(findDuplicates('Hello'));                 // Output: [ 'L' ]
+// console.log(findDuplicates([1, 2, 3, 4, 4, 5, 5, 6])); // Output: [4, 5]
+// console.log(findDuplicates([1, 2, 3, 4, 5]));         // Output: []
+// console.log(findDuplicates([]));                      // Output: []
+// console.log(findDuplicates([1, 2, 2, 1, 5, 5, 5, 8]));// Output: [1, 2, 5]
+// console.log(findDuplicates('Hello'));                 // Output: [ 'L' ]
+
+//take a string and capitalize the first letter of each word
+function capitalizeWords(string) {
+    let words = string.split(" ")
+    let capitalizedWordsArray = []
+    // for (let word in words) {
+    for (let i=0; i < words.length; i++) {
+        const firstLetter = words[i][0]
+        const capitalizedLetter = firstLetter.toUpperCase()
+        const capitalizedWord = capitalizedLetter.concat(words[i].slice(1))
+        capitalizedWordsArray.push(capitalizedWord)
+    }
+    // }
+    return capitalizedWordsArray.join(' ')
+}
+
+console.log(capitalizeWords("hello world"))
+console.log(capitalizeWords("the quick brown fox"))
+console.log(capitalizeWords("what's up, doc?"))
