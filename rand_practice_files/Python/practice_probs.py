@@ -347,9 +347,9 @@ def capitalizeWords(s):
     # Join the capitalized words back into a string
     return ' '.join(capitalized_words)
 
-print(capitalize_words("hello world"))
-print(capitalize_words("the quick brown fox"))
-print(capitalize_words("what's up, doc?"))
+# print(capitalize_words("hello world"))
+# print(capitalize_words("the quick brown fox"))
+# print(capitalize_words("what's up, doc?"))
 
 def zigzags(numbers):
     if len(numbers) == 0:
@@ -366,3 +366,95 @@ def zigzags(numbers):
                 zigs.append(0)
             
     return zigs
+
+
+
+def merge_sort(arr):
+    if len(arr) <= 1:
+        return arr  # Base case: If the array has 0 or 1 elements, it is already sorted
+
+    # Divide the array into two halves
+    mid = len(arr) // 2
+    left_subarray = arr[:mid]
+    right_subarray = arr[mid:]
+
+    # Recursively sort each half
+    left_sorted = merge_sort(left_subarray)
+    right_sorted = merge_sort(right_subarray)
+
+    print('left_sorted:', left_sorted)
+    print('right_sorted:', right_sorted)
+    # Merge the sorted halves
+    return merge(left_sorted, right_sorted)
+
+def merge(left, right):
+    merged = []
+    left_index = right_index = 0
+
+    # Compare elements from the left and right halves and merge them in sorted order
+    while left_index < len(left) and right_index < len(right):
+        if left[left_index] < right[right_index]:
+            merged.append(left[left_index])
+            left_index += 1
+        else:
+            merged.append(right[right_index])
+            right_index += 1
+
+    # Append any remaining elements from the left and right halves
+    merged.extend(left[left_index:])
+    merged.extend(right[right_index:])
+
+    return merged
+
+# Example usage:
+my_list = [64, 34, 25, 12, 22, 11, 90]
+sorted_list = merge_sort(my_list)
+# print("Sorted array:", sorted_list)
+
+
+# MERGE SORT AS A SINGLE FUNCTION: **************
+'''
+def merge_sort(arr):
+    if len(arr) <= 1:
+        return arr  # Base case: If the array has 0 or 1 elements, it is already sorted
+
+    # Divide the array into two halves
+    mid = len(arr) // 2
+    left = merge_sort(arr[:mid])
+    right = merge_sort(arr[mid:])
+
+    # Merge the sorted halves
+    merged = []
+    left_index = right_index = 0
+
+    # Compare elements from the left and right halves and merge them in sorted order
+    while left_index < len(left) and right_index < len(right):
+        if left[left_index] < right[right_index]:
+            merged.append(left[left_index])
+            left_index += 1
+        else:
+            merged.append(right[right_index])
+            right_index += 1
+
+    # Append any remaining elements from the left and right halves
+    merged.extend(left[left_index:])
+    merged.extend(right[right_index:])
+
+    return merged
+
+# Example usage:
+my_list = [64, 34, 25, 12, 22, 11, 90]
+sorted_list = merge_sort(my_list)
+print("Sorted array:", sorted_list)
+
+'''
+
+def array_transformation(arr):
+    b = [0] * len(arr)
+    # b = []
+    for i in range(len(arr)):
+        b[i] += (arr[i-1] if i-1 >= 0 else 0) + arr[i] + (arr[i+1] if i+1 < len(arr) else 0)
+        # b.append((arr[i-1] if i-1 >= 0 else 0) + arr[i] + (arr[i+1] if i+1 < len(arr) else 0))
+    return b
+
+print(array_transformation([4,0,1,-2,3]))
