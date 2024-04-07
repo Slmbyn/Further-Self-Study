@@ -382,8 +382,8 @@ def merge_sort(arr):
     left_sorted = merge_sort(left_subarray)
     right_sorted = merge_sort(right_subarray)
 
-    print('left_sorted:', left_sorted)
-    print('right_sorted:', right_sorted)
+    # print('left_sorted:', left_sorted)
+    # print('right_sorted:', right_sorted)
     # Merge the sorted halves
     return merge(left_sorted, right_sorted)
 
@@ -457,4 +457,386 @@ def array_transformation(arr):
         # b.append((arr[i-1] if i-1 >= 0 else 0) + arr[i] + (arr[i+1] if i+1 < len(arr) else 0))
     return b
 
-print(array_transformation([4,0,1,-2,3]))
+# print(array_transformation([4,0,1,-2,3]))
+
+# def pattern_source(pattern, source):
+#     vowels = ['a','e','i','o','u']
+#     counter = 0
+#     pattern_list = pattern.split()
+#     for i in range(len(source)):
+#         arr = []
+#         while len(arr) <= len(pattern):
+#             if source[i] in vowels:
+#                 arr.append(0)
+#             else:
+#                 arr.append(1)
+#         if arr == pattern_list:
+#             counter += len(arr)
+#     return counter
+
+
+# pattern = '010'
+# source = 'amazing'
+
+def pattern_source(pattern, source):
+    # init vowels array
+    vowels = ['a', 'e', 'i', 'o', 'u']
+    # init an empty string 'compare_pattern'
+    compare_pattern = ''
+    # loop thru source and see if the character is in vowel (+= 0 to compare_pattern if it is, else +=1)
+    for i in range(len(source)):
+    # ensure compare_pattern length is = pattern length at the end
+        current_character = source[i]
+        if source[i] in vowels:
+            compare_pattern += '0'
+        else:
+            compare_pattern += '1'
+    answer = compare_pattern.count(pattern)
+    
+    return answer
+
+
+# print(pattern_source('010', 'amazing'))  # expected output: 2
+
+# Sliding Window: Sum example
+def max_subarray_sum(arr, k):
+    max_sum = float('-inf')  # Initialize max_sum to negative infinity
+    window_sum = 0  # Initialize the sum of current window
+
+    # Iterate through the array, sliding the window
+    for i in range(len(arr)):
+        temp = arr[i]
+        # Add the element at the right end of the window
+        window_sum += arr[i]
+        
+        # If we've reached the size k, update max_sum and move the window
+        if i >= k - 1:
+            max_sum = max(max_sum, window_sum)  # Update max_sum
+            # Subtract the element at the left end of the window
+            window_sum -= arr[i - (k - 1)]
+
+    return max_sum
+
+# Example usage:
+arr = [4, 2, 1, 7, 8, 1, 2, 8, 1, 0]
+k = 3
+# print("Maximum sum of subarray of size", k, ":", max_subarray_sum(arr, k))
+
+def sliding_window_template(arr, k):
+    left = 0
+    right = k - 1  # Initialize the right end of the window
+    
+    # Handle edge cases
+    if len(arr) == 0 or k > len(arr):
+        return None  # or handle it according to your problem
+    
+    # Initialize any necessary variables
+    
+    while right < len(arr):
+        # Update window state
+        # For example, calculate the sum of elements within the current window
+        
+        # Process the current window
+        # For example, check if the sum of the current window is greater than the previous maximum sum
+        
+        # Handle any additional logic
+        
+        # Move the window by incrementing left and right pointers
+        left += 1
+        right += 1
+    
+    # Return any relevant results
+
+
+def maxSlidingWindow(nums, k: int):
+    max_array = []
+    left_pointer = 0
+    right_pointer = k
+    # loop thru List for i in range(len(nums)-1):
+    while right_pointer <= len(nums):
+        # slice that portion of the List
+        window = nums[ left_pointer : right_pointer ]
+        # sum that portion
+        window_max = max(window)
+        # push the sum into max_array
+        max_array.append(window_max)
+        # increase left/right pointer += 1
+        left_pointer += 1
+        right_pointer += 1
+    # return max_array
+    return max_array
+
+# print(maxSlidingWindow([1,3,-1,-3,5,3,6,7],3))   # Expected Output: [3,3,5,5,6,7]
+
+# numbers = [[1,2,3,4],[4,5,6],[7,8,9]]
+# print(range(len(numbers[0]) - 2))
+
+'''
+if nums has all numbers from 1-9, then
+'''
+def sliding_matrix(nums):
+    # create result array to return
+    # loop through the matrix (set up the window here)
+        # set up temp array to hold all values from current window (each iteration of the outer outer loop)
+        # create a nested loop to check each int within each row
+            # add each element from the current window to a temp array that we will check to see if it includes the data we want or not
+        # check if temp array is true/false and append that to result array
+    # return result array
+    pass
+
+'''
+LOOP THRU A sliding matrix window and check if each of the values in that window are even. Then return an array with true/false for each window. the input matrix will be 2xn and the window should be 2x2.
+'''
+def even_window(nums):
+    result = []
+    n = len(nums[0])
+    # loop & create 2x2 window
+    for i in range(2):
+        current_window = []
+        # loop thru rows
+        for row in nums:
+            # nested loop thru cols
+            for col in range(i, i+2):
+                # append each element to current_window
+                current_window.append(row[col])
+        # check if current_window is all even or not
+        # append true to result if so, else append false
+        result.append((sum(current_window)) % 2 == 0)
+    return result
+
+# PROBLEM 2 FROM ASANA ASSESSMENT
+'''
+You are given numbers, a 3 * n matrix which contains only digits from 1 to 9. 
+Consider a sliding window of size 3 x 3, which is sliding from left to right 
+through the matrix numbers. The sliding window has n - 2 positions when sliding 
+through the initial matrix.
+Your task is to find whether or not each sliding window position contains all the 
+numbers from 1 to 9 (inclusive). Return an array of length n - 2, where the ith 
+element is true if the ith state of the sliding window contains all the numbers 
+from 1 to 9, and false otherwise.
+'''
+
+def contains_all_numbers(numbers):
+    # empty array to store result
+    result = []
+    n = len(numbers[0])
+    counter = 0
+    # for i in range(n - 2): #range(n-2) determines how long len(result) is and makes sure that the 'j' loop index range can fit inside the array (i.e: ensure that i+3 is a valid idx)
+    while counter <= n-3:
+        window = []
+        for row in numbers:
+            # for j in range(i, i + 3):
+            for j in range(counter, counter + 3):
+                window.append(row[j])
+        result.append(len(set(window)) == 9)
+        counter += 1
+    return result
+
+
+'''
+You are given a list of lists grid representing a grid of integers. 
+Each list in grid represents a row in the grid. Your task is to find 
+the sum of each 2x2 subgrid within the grid and return a list of these sums.
+
+For example, given the grid:
+grid = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]
+
+The 2x2 subgrids and their sums are:
+
+Subgrid starting at (0, 0): [[1, 2], [4, 5]], sum = 1 + 2 + 4 + 5 = 12
+Subgrid starting at (0, 1): [[2, 3], [5, 6]], sum = 2 + 3 + 5 + 6 = 16
+Subgrid starting at (1, 0): [[4, 5], [7, 8]], sum = 4 + 5 + 7 + 8 = 24
+Subgrid starting at (1, 1): [[5, 6], [8, 9]], sum = 5 + 6 + 8 + 9 = 28
+
+So, the expected output would be [12, 16, 24, 28].
+
+Your task is to implement a function sum_of_subgrids(grid) that takes the grid 
+as input and returns a list containing the sums of all 2x2 subgrids.
+'''
+
+def sum_of_subgrids(grid):
+    sums = []
+    m = len(grid) #num of rows
+    n = len(grid[0]) #num of columns
+    for row in range(m - 1): #loop thru the num of rows
+        for col in range(n - 1): #loop thru the cols within the rows
+            window = [
+                grid[row][col],
+                grid[row][col +1],
+                grid[row + 1][col],
+                grid[row + 1][col + 1]
+            ]
+            sums.append(sum(window))
+    return sums
+
+grid = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]
+# print(sum_of_subgrids(grid))
+
+def max_hourglass_sum(grid):
+    sums = []
+    m = len(grid) #num of rows
+    n = len(grid[0]) #num of columns
+    for row in range(m - 2): #loop thru the num of rows
+        for col in range(n - 2): #loop thru the cols within the rows
+            window = [
+                grid[row][col],
+                grid[row][col +1],
+                grid[row][col +2],
+                grid[row + 1][col + 1],
+                grid[row + 2][col],
+                grid[row + 2][col +1],
+                grid[row + 2][col +2],
+            ]
+            sums.append(sum(window))
+    return max(sums)
+
+grid = [    [1, 1, 1, 0, 0, 0],
+    [0, 1, 0, 0, 0, 0],
+    [1, 1, 1, 0, 0, 0],
+    [0, 0, 2, 4, 4, 0],
+    [0, 0, 0, 2, 0, 0],
+    [0, 0, 1, 2, 4, 0]
+]
+
+# print(max_hourglass_sum(grid))
+
+def min_candies(nums):
+    n = len(nums)
+    candy = [1] * n
+    for i in range(n):
+        if nums[i+1] > nums[i]:
+            candy[i+1] += 1
+        elif nums[i+1] < nums[i]:
+            candy[i] += 1
+    return sum(candy)
+
+nums = [1, 0, 2]
+
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def addTwoNumbers(self, l1, l2):
+        l1_list = [l1.val]
+        l2_list = [l2.val]
+        current_l1_node = l1
+        current_l2_node = l2
+        # loop thru LL and append each node into its temp list
+        if current_l1_node.next:
+            next_node = current_l1_node.next
+            l1_list.append(next_node.val)
+            current_l1_node = current_l1_node.next
+        if current_l2_node.next:
+            next_node = current_l2_node.next
+            l2_list.append(next_node.val)
+            current_l2_node = current_l2_node.next
+        # reverse and join the temp lists
+        int_l1 = int(''.join(map(str, reversed(l1_list))))
+        int_l2 = int(''.join(map(str, reversed(l2_list))))
+        # get the sum
+        the_sum = int_l1 + int_l2
+        # add each number as a node in a new Linked List but in reverse order
+        new_linked_list_head = None
+        # Iterate through each digit of the sum in reverse order
+        for digit in reversed(str(the_sum)):
+            # Convert the digit to an integer and create a new node
+            new_node = ListNode(int(digit))
+            # Link the new node to the existing linked list
+            new_node.next = new_linked_list_head
+            # Update the head of the linked list to the new node
+            new_linked_list_head = new_node
+        return new_linked_list_head
+
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+def addTwoNumbers(l1, l2):
+    # convert LLs to a list
+    list_one = []
+    list_two = []
+    
+    current_l1 = l1
+    while current_l1:
+        list_one.append(current_l1.val) #adds the next node to the list
+        current_l1 = current_l1.next #changes current to the next node
+        
+    current_l2 = l2
+    while current_l2:
+        list_two.append(current_l2.val) #adds the next node to the list
+        current_l2 = current_l2.next #changes current to the next node
+
+    # reverse those lists and turn it into an integer
+    int_l1 = int(''.join(map(str, reversed(list_one))))
+    int_l2 = int(''.join(map(str, reversed(list_two))))
+    
+    # add the integer's together to get the sum
+    reversed_sum = int_l1 + int_l2
+    
+    # Loop thru the sum and add each digit to a new linked list
+    dummy = ListNode(0)
+    current_node = dummy
+    for i in range(reversed_sum):
+        # if idx=0 then make this digit the head node
+        if i == 0:
+            dummy = ListNode(reversed_sum[i])
+        # else set this digit as the next node
+        else:
+            current_node.next = ListNode(reversed_sum[i])
+            current_node = current_node.next
+    return dummy
+
+def add_diagonals(matrix):
+    n = len(matrix)
+    sums = []
+    # primary diagonal
+    for i in range(n):
+        diagonal = []
+        #append to diagonal
+        diagonal.append(matrix[i][i])
+        # sum diagonal and append to sums list
+        sums.append(sum(diagonal))
+    # secondary diagonal
+    for i in range(n):
+        diagonal = []
+        #append to diagonal
+        diagonal.append(matrix[i][-i])
+        # sum diagonal and append to sums list
+        sums.append(sum(diagonal))
+    return sum(sums)
+
+
+matrix = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]
+
+# print(add_diagonals(matrix))
+
+'''
+Problem:
+You are given a square matrix matrix of size n x n, where 
+each cell contains an integer. Your task is to find the sum
+of the elements in each row and return the list of sums.
+'''
+def row_sums(matrix):
+    n = len(matrix)
+    sums = []
+    for row in matrix:
+        sums.append(sum(row))
+    return sums
+
+print(row_sums(matrix))
