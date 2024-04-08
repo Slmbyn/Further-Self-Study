@@ -839,4 +839,58 @@ def row_sums(matrix):
         sums.append(sum(row))
     return sums
 
-print(row_sums(matrix))
+# print(row_sums(matrix))
+
+matrix = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]
+
+def rotate_clockwise(matrix):
+    n = len(matrix)
+    rotated = [[0] * n for _ in range(n)]
+    for row in range(n):
+        for col in range(n):
+            rotated[col][n-1-row] = matrix[row][col]
+    return rotated
+
+# print(rotate_clockwise(matrix))
+
+def rotate_counterClockwise(matrix):
+    n = len(matrix)
+    rotated = [[0] * n for _ in range(n)]
+    for row in range(n):
+        for col in range(n):
+            rotated[n-1-row][col] = matrix[col][row]
+    return rotated
+
+# print(rotate_counterClockwise(matrix))
+
+def flip_matrix(matrix):
+    n = len(matrix)
+    flipped = [[0] * n for _ in range(n)]
+    for row in range(n):
+        flipped[row] = matrix[n-1-row]
+    return flipped
+# print(flip_matrix(matrix))
+
+def flip_main_diagonal(matrix):
+    n = len(matrix)
+    flipped = [[0] * n for _ in range(n)]
+    for row in range(n):
+        for col in range(n):
+            flipped[row][col] = matrix[col][row]
+    return flipped
+
+# print(flip_main_diagonal(matrix))
+
+def flip_secondary_diagonal(matrix):
+    n = len(matrix)
+    flipped = [[0] * n for _ in range(n)]
+    for row in range(n):
+        for col in range(n):
+            flipped[row][col] = matrix[n-1-col][n-1-row]
+    return flipped
+
+print(flip_secondary_diagonal(matrix))
