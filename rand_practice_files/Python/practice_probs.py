@@ -626,11 +626,23 @@ def contains_all_numbers(numbers):
         window = []
         for row in numbers:
             # for j in range(i, i + 3):
-            for j in range(counter, counter + 3):
-                window.append(row[j])
+            for col in range(counter, counter + 3):
+                window.append(row[col])
         result.append(len(set(window)) == 9)
         counter += 1
     return result
+
+# This is what was submitted
+def contains_all_numbers_GPT(numbers):
+    result = []
+    for i in range(len(numbers[0]) - 2):
+        window = []
+        for row in numbers:
+            for col in range(i, i + 3):
+                window.append(row[col])
+        result.append(len(set(window)) == 9)
+    return result
+
 
 
 '''
@@ -893,4 +905,70 @@ def flip_secondary_diagonal(matrix):
             flipped[row][col] = matrix[n-1-col][n-1-row]
     return flipped
 
-print(flip_secondary_diagonal(matrix))
+# print(flip_secondary_diagonal(matrix))
+
+def bubbly(nums):
+    n = len(nums)
+    for i in range(n):
+        for j in range(n-1-i):
+            if nums[j] > nums[j+1]:
+                nums[j], nums[j+1] = nums[j+1], nums[j]
+
+matrix = [
+    [3, 3, 1, 1],
+    [2, 2, 1, 2],
+    [1, 1, 1, 2]
+]
+
+[
+    [1, 1, 1, 1],
+    [1, 2, 2, 2],
+    [1, 2, 3, 3]
+]
+def diagonal_sort(matrix):
+    n = len(matrix)
+    m = len(matrix[0])
+    sorted_matrix = [[0] * m for _ in range(n)]
+    for i in range(n):
+        for row in range(n-1):
+            for col in range(m-1):
+                current = matrix[row][col]
+                compare_with = matrix[row + 1][col + 1]
+                if matrix[row][col] > matrix[row + 1][col + 1]:
+                    sorted_matrix[row][col] = matrix[row + 1][col + 1]
+                    sorted_matrix[row + 1][col + 1] = matrix[row][col]
+                else:
+                    sorted_matrix[row][col] = matrix[row][col]
+                    sorted_matrix[row + 1][col + 1] = matrix[row + 1][col + 1]
+    return sorted_matrix
+print(diagonal_sort(matrix))
+
+
+matrix = [
+    [3, 3, 1, 1],
+    [2, 2, 1, 2],
+    [1, 1, 1, 2]
+]
+def diagonal_sort(matrix):
+    # Get dimensions of the matrix
+    rows = len(matrix)
+    cols = len(matrix[0])
+    
+    # Iterate over each diagonal line
+    for diagonal_idx in range(rows + cols - 1): #rows + cols - 1 calculates the number of diagonal lines in a grid
+        diagonal_elements = []
+        
+        # Extract elements along the current diagonal
+        for row in range(max(0, diagonal_idx - cols + 1), min(rows, diagonal_idx + 1)):
+            col = diagonal_idx - row
+            diagonal_elements.append(matrix[row][col])
+        
+        # Sort the extracted elements
+        diagonal_elements.sort()
+        
+        # Place the sorted elements back into the matrix along the same diagonal
+        for row in range(max(0, diagonal_idx - cols + 1), min(rows, diagonal_idx + 1)):
+            col = diagonal_idx - row
+            matrix[row][col] = diagonal_elements.pop(0)
+    
+    return matrix
