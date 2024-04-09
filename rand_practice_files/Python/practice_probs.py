@@ -635,10 +635,10 @@ def contains_all_numbers(numbers):
 # This is what was submitted
 def contains_all_numbers_GPT(numbers):
     result = []
-    for i in range(len(numbers[0]) - 2):
+    for i in range(len(numbers[0]) - 2): # (len(numbers[0]) - 2) ensures that the window will fit (in the col loop)
         window = []
         for row in numbers:
-            for col in range(i, i + 3):
+            for col in range(i, i + 3): # (i, i + 3) creates the window
                 window.append(row[col])
         result.append(len(set(window)) == 9)
     return result
@@ -972,3 +972,20 @@ def diagonal_sort(matrix):
             matrix[row][col] = diagonal_elements.pop(0)
     
     return matrix
+
+def add_matrices(matrix_one, matrix_two):
+    
+    if len(matrix_one) != len(matrix_two) or len(matrix_one[0]) != len(matrix_two[0]):
+        raise ValueError("Matrices must have the same dimensions for addition")
+    
+    n = len(matrix_one)
+    m = len(matrix_one[0])
+    
+    summed_matrix = [[0] * n for _ in range(n)]
+    
+    for row in range(n):
+        for col in range(m):
+            sum = matrix_one[row][col] * matrix_two[row][col]
+            summed_matrix[row][col] = sum
+
+    return summed_matrix
