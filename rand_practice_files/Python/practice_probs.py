@@ -847,6 +847,7 @@ of the elements in each row and return the list of sums.
 def row_sums(matrix):
     n = len(matrix)
     sums = []
+    sums = []
     for row in matrix:
         sums.append(sum(row))
     return sums
@@ -941,7 +942,7 @@ def diagonal_sort(matrix):
                     sorted_matrix[row][col] = matrix[row][col]
                     sorted_matrix[row + 1][col + 1] = matrix[row + 1][col + 1]
     return sorted_matrix
-print(diagonal_sort(matrix))
+# print(diagonal_sort(matrix))
 
 
 matrix = [
@@ -989,3 +990,117 @@ def add_matrices(matrix_one, matrix_two):
             summed_matrix[row][col] = sum
 
     return summed_matrix
+
+def mergeAlternately(word1: str, word2: str):
+    counter = 0
+    
+    
+    
+    
+#     result = []
+#     listed_word1 = list(word1)
+#     listed_word2 = list(word2)
+#     for i in range(max(len(listed_word1),len(listed_word1))):
+#         if len(word1) > i:
+#             char = listed_word1.pop(0)
+#             result.append(char)
+#         if len(word2) > i:
+#             char = listed_word2.pop(0)
+#             result.append(char)
+#     str_result = ''.join(result)
+#     return str_result
+
+# print(mergeAlternately('abc','pqr'))
+
+def find_index(arr, target):
+    left = 0
+    right = len(arr) - 1
+    
+    while left <= right:
+        mid = (left + right) // 2
+        if arr[mid] == target:
+            return mid
+        elif arr[mid] < target:
+            left = mid + 1
+        else:
+            right = mid - 1
+    
+    raise AttributeError('Target Not Found')
+
+nums = [-10, -5, 0, 3, 7, 9, 12, 15]
+target = 7
+# The target integer 7 is present at index 4 in the list.
+# So, the function should return 4.
+
+# print(find_index(nums, target))  # Output: 4
+
+def successfulPairs(spells, potions, success):
+    n = len(spells)
+    m = len(potions)
+    pairs = []
+    for x in range(n):
+        result = []
+        for y in range(m):
+            if spells[x] * potions[y] >= success:
+                result.append(spells[x] * potions[y])
+        pairs.append(len(result))
+    return pairs
+
+# successfulPairs([5,1,3],[1,2,3,4,5],7)
+
+def max_sub_array_sum(arr, k):
+    max_sum = 0  # Variable to store the maximum sum found
+    window_sum = 0  # Variable to store the current sum of the window
+    
+    # Step 1: Calculate the sum of the first k elements to initialize the window sum
+    for i in range(k):
+        currentNum = arr[i]
+        window_sum += arr[i]
+    
+    loop_till = len(arr) - k
+    # Step 2: Start sliding the window and calculate the sum
+    for i in range(len(arr) - k + 1): #intentionally leave out the last k elements (3 in this example) so that we can slide the loop.(add one to the end, cause range() is non-inclusive)
+        # Step 3: Check if the current sum is greater than the max_sum
+        max_sum = max(max_sum, window_sum)
+        
+        # Step 4: Slide the window by subtracting the element going out and adding the element coming in
+        if i + k < len(arr):
+            current_window = [arr[i], arr[i+1],arr[i+2]]
+            next_window = [arr[i+1],arr[i+2],arr[i+k]]
+            window_sum = window_sum - arr[i] + arr[i + k]
+    
+    return max_sum
+
+# # Example usage:
+# arr = [4, 2, 1, 7, 8, 1, 2, 8, 1, 0]
+# k = 3  # Size of the subarray
+# arr = [1, 2, 3, 4, 5]
+# k = 3
+# print(max_sub_array_sum(arr, k))  # Output: 16 (maximum sum of [7, 8, 1])
+
+
+def sliding_window_practice(arr, k):
+    max_sum = 0
+    window_sum = 0
+    
+    for i in range(k):
+        window_sum += arr[i]
+
+    # loop to update and slide window
+    for i in range(len(arr) - k + 1):
+        max_sum = max(max_sum , window_sum)
+        
+        if i+k < len(arr):
+            window_sum = window_sum - arr[i] + arr[i+k]
+    
+    return max_sum
+
+
+
+
+
+# Example usage:
+arr = [4, 2, 1, 7, 8, 1, 2, 8, 1, 0] #len=10
+k = 3  # Size of the subarray
+print(max_sub_array_sum(arr, k))  # Output: 16 (maximum sum of [7, 8, 1])
+

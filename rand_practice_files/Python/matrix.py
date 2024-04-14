@@ -1,4 +1,4 @@
-# SUM MATRICIES
+# SUM MATRICIES ----------------------------------------------------------------------
 def add_matricies(matrix1, matrix2):
     if len(matrix1) != len(matrix2) or len(matrix1[0]) != len(matrix2[0]):
         raise ValueError("Matrices must have the same dimensions for addition")
@@ -15,7 +15,7 @@ def add_matricies(matrix1, matrix2):
     
     return result
 
-# rotate matrix clockwise (90degrees)
+# rotate matrix clockwise (90degrees) ----------------------------------------------------------------------
 def rotate_90(matrix):
     n = len(matrix)
     m = len(matrix[0])
@@ -31,7 +31,7 @@ def rotate_90(matrix):
     print(rotated)
     return
 
-# Rotate counterclockwise
+# Rotate counterclockwise ----------------------------------------------------------------------
 def rotate_counter(matrix):
     n = len(matrix)
     m = len(matrix[0])
@@ -44,18 +44,55 @@ def rotate_counter(matrix):
     
     print(rotated)
     return
+# rotate_counter(matrix)
+
+# Flip matrix ----------------------------------------------------------------------
+def flip_matrix(matrix):
+    n = len(matrix)
+    # init an empty matrix
+    result = [[0] * n for _ in range(n)]
+    # loop thru the rows
+    for row in range(n):
+        # assign the value of the first row in new matrix to be last row in input matrix
+        result[row] = matrix[ n - row - 1 ]
+    return result
+# print(flip_matrix(matrix))
+
+# Flip on main diagonal ----------------------------------------------------------------------
+def flip_main_diagonal(matrix):
+    n = len(matrix)
+    m = len(matrix[0])
+    
+    if n != m:
+        raise ValueError('Must be a square matrix')
+
+    flipped = [[0] * n for _ in range(n)]
+    
+    for row in range(n):
+        for col in range(n):
+            flipped[row][col] = matrix[col][row]
+    
+    return flipped
+# print(flip_main_diagonal(matrix))
+
+
+# Flip on secondary diagonal ----------------------------------------------------------------------
+def flip_second_diagonal(matrix):
+    n = len(matrix)
+    flipped = [[0] * n for _ in range(n)]
+    for row in range(n):
+        for col in range(n):
+            flipped[row][col] = matrix[n-1-col][n-1-row]
+    return flipped
+# print(flip_second_diagonal(matrix))
 
 matrix = [
     [1, 2, 3],
     [4, 5, 6],
     [7, 8, 9]
 ]
-rotate_counter(matrix)
-    
-    
-# Flip matrix
-# Flip on main diagonal
-# Flip on secondary diagonal
-# Sliding window
-# Sort diagonally
+# Sliding window ----------------------------------------------------------------------
+
+
+# Sort diagonally ----------------------------------------------------------------------
 
