@@ -1102,5 +1102,49 @@ def sliding_window_practice(arr, k):
 # Example usage:
 arr = [4, 2, 1, 7, 8, 1, 2, 8, 1, 0] #len=10
 k = 3  # Size of the subarray
-print(max_sub_array_sum(arr, k))  # Output: 16 (maximum sum of [7, 8, 1])
+# print(max_sub_array_sum(arr, k))  # Output: 16 (maximum sum of [7, 8, 1])
+
+def min_coins(coins, amount):
+    coins.sort(reverse=True)
+    
+    coin_count = 0
+    remaining_amount = amount
+    
+    for coin in coins:
+        while coin <= remaining_amount:
+            remaining_amount -= coin
+            coin_count += 1
+    
+    if remaining_amount == 0:
+        return coin_count
+    else:
+        return 'No combination of coins equals that amount'
+
+coins = [1, 5, 10, 25]
+amount = 63
+# print("Minimum number of coins needed:", min_coins(coins, amount))  # Output: 6
+
+'''
+Problem:
+Given a list of tasks represented by their start and end times, find the minimum 
+number of meeting rooms required to accommodate all the tasks simultaneously. 
+Each meeting room can only host one task at a time.
+'''
+def min_meeting_rooms(tasks):
+    meeting_rooms = 0
+    end_times = []  # Initialize end times list
+
+    for task in tasks:
+        if not end_times or task[0] < end_times[0]:  # No ongoing meetings or task starts before earliest ending meeting
+            meeting_rooms += 1
+        else:
+            end_times.pop(0)  # Remove the earliest ending meeting
+
+        end_times.append(task[1])  # Add end time of current task
+
+    return meeting_rooms
+
+# Example usage:
+tasks = [(0, 30), (5, 10), (15, 20)]
+print(min_meeting_rooms(tasks))  # Output: 2
 
