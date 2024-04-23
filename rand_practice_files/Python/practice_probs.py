@@ -1146,5 +1146,80 @@ def min_meeting_rooms(tasks):
 
 # Example usage:
 tasks = [(0, 30), (5, 10), (15, 20)]
-print(min_meeting_rooms(tasks))  # Output: 2
+# print(min_meeting_rooms(tasks))  # Output: 2
 
+
+'''
+Problem:
+Given a list of integers, find the length of the longest 
+contiguous subarray with an equal number of 0s and 1s.
+'''
+
+def max_contiguous_subarray(nums):
+    largest_length = 0
+    current_subarray = []
+    
+    for i in range(len(nums)):
+        if nums[i] != current_subarray[-1]:
+            current_subarray.append(nums[i])
+            
+        else:
+            largest_length = max(largest_length, len(current_subarray))
+            current_subarray = [nums[i]]
+                
+    return largest_length
+
+
+nums = [0, 1, 0, 1, 1, 0, 0]
+print(max_contiguous_subarray(nums))  # Output: 4
+
+
+
+'''
+create a list with a len of n+1
+check if a value exists at index n
+if not check if n == 1 or 2, if so you'll store the value 1 at that index
+else, calculate the fib value, then store it in the list at index n, and return that value
+'''
+
+def max_paths_recursiveley(matrix):
+    if len(matrix) == 1 and len(matrix[0]) == 1:
+        return 1
+    else:
+        matrix_one_less_col = [row[:-1] for row in matrix]
+        matrix_one_less_row = matrix[:-1]
+        num_paths = max_paths_recursiveley(matrix_one_less_col) + max_paths_recursiveley(matrix_one_less_row)
+    return num_paths
+
+def recursive_factorial(n):
+    if n <= 1:
+        return 1
+    return n * recursive_factorial(n-1)
+
+mapped = {}
+def mapped_recursive_factorial(n):
+    if n <= 1:
+        return 1
+    if n in mapped:
+        return mapped[n]
+    mapped[n] = n * mapped_recursive_factorial(n-1)
+    return mapped[n]
+
+def sum_digits(n):
+    if len(n) == 1:
+        return n
+    split_n = n.split()
+    sum = None
+    for i in range(len(n)):
+        sum = split_n[i] + sum_digits(i)
+    return sum
+
+def twosum(nums, target):
+    compliments = {}
+    for i, num in enumerate(nums):
+        compliment = target - num
+        if compliment in compliments:
+            return [compliments[compliment], i]
+        else:
+            compliments[compliment] = i
+    return 'doesnt exist'

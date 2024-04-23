@@ -99,6 +99,40 @@ class SLLNode:
     
     def set_next(self, new_next):
         self.next = new_next
+        
+
+def swap_k(root, k):
+    left = root
+    right = root
+    
+    for _ in range(k-1):
+        right = right.next
+
+    # The start node for next group
+    next_group = right.next
+    
+    # getting the length of LL
+    length = 0
+    curr = root
+    while curr.next:
+        curr = curr.next
+        length += 1
+        
+    for _ in range(length):
+        # swap right w/ left
+        left_pointer = left.next
+        
+        # need left to point to right.next
+        # need right to point to left.next
+        
+        # increment right down by 1 and left up by 1
+        # when right = left, break the loop and move to next group
+        # check that k values from next_group exist
+        
+
+
+
+
 
 # SINGLY LINKED LIST
 class SLL:
@@ -207,6 +241,88 @@ class SLL:
             print(current_node.data, end=" ")
             current_node = current_node.next
         print()
+        
+    def rotate_clockwise(self, k: int):
+        if not self.head or k==0:
+            return self.head
+        
+        last = self.head
+        length = 1
+        
+        # Traverse the linked list to find its length
+        while last.next:
+            last = last.next
+            length += 1
+            
+        # Connect the last node to the head to make it a circular linked list
+        last.next = self.head
+        
+        current_node = self.head
+        # Traverse the list again to find the node just before the new head (which will become the new tail)
+        for _ in range(length - (k % length) - 1): # length - k gives you the new head node, by subtracting 1, you get the new tail, which you can then point to None. (also the ( k % length) makes it so that you dont have to rotate more times than needed)
+            current_node = current_node.next    #sets current_node to the new tail node
+        
+        self.head = current_node.next   #the node after the new tail node, is the new head node (the '- 1' in the loop above ensured this)
+        current_node.next = None    # the tail node should now be pointed to None
+        
+        return self.head
+    
+        def rotate_counter_clockwise(self, k: int):
+            if not self.head or k == 0:
+                return self.head
+
+            last = self.head
+            length = 1
+            
+            # Traverse the linked list to find its length
+            while last.next:
+                last = last.next
+                length += 1
+                
+            # Connect the last node to the head to make it a circular linked list
+            last.next = self.head
+            
+            current_node = self.head
+            # Traverse the list again to find the new tail node
+            for _ in range((k % length)):  # Traverse 'k' times to find the new tail node (unlike rotating clockwise, we do not subtract it from the length)
+                current_node = current_node.next
+            
+            new_head = current_node.next   # New head is the node after the new tail
+            current_node.next = None       # Set the new tail node's next pointer to None
+            
+            self.head = new_head          # Update the head pointer
+            
+            return self.head
+
+    
+    # Define a function called reverse_linked_list that takes a head node as input
+    def reverse_linked_list(self, head):
+        # Check if the linked list is empty or has only one node
+        if not head or not head.next:
+            # If so, return the head since there is no need to reverse it
+            return head
+        
+        # Initialize a variable prev to None, which will keep track of the previous node
+        prev = None
+        # Initialize a variable current to the head of the linked list
+        current = head
+        
+        # Start a loop that continues until we reach the end of the linked list
+        while current:
+            # Store the next node of the current node in a temporary variable
+            temp = current.next
+            # Reverse the pointer of the current node to point to the previous node
+            current.next = prev
+            # Move prev to the current node
+            prev = current
+            # Move current to the next node
+            current = temp
+        
+        # Return the new head of the reversed linked list, which is the last node of the original list
+        return prev
+
+    
+    
 
 # DOUBLY LINKED LIST NODE
 class DLLNode:
