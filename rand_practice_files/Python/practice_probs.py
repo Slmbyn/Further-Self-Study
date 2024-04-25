@@ -847,7 +847,6 @@ of the elements in each row and return the list of sums.
 def row_sums(matrix):
     n = len(matrix)
     sums = []
-    sums = []
     for row in matrix:
         sums.append(sum(row))
     return sums
