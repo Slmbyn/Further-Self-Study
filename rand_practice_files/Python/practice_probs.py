@@ -1350,4 +1350,31 @@ def sort_even_odd(arr):
     # merge the lists and return it
     return ascending_even + descending_odd
 
-print(sort_even_odd([9, 8, 7, 6, 5, 4, 3, 2, 1]))
+# print(sort_even_odd([9, 8, 7, 6, 5, 4, 3, 2, 1]))
+
+'''
+Problem:
+Write a Python function called sort_alphanumeric(strings) that 
+sorts a list of strings strings in lexicographic order, where each 
+string may contain alphanumeric characters (letters and digits). 
+You should implement this sorting algorithm using the quick sort algorithm.
+
+For example:
+
+Input: ["banana", "apple", "cherry", "123", "567", "45a"]
+Output: ["123", "45a", "567", "apple", "banana", "cherry"]
+Your function should return the sorted list of strings strings.
+'''
+
+def sort_alphanumeric(strings):
+    if len(strings) <=1 :
+        return strings
+    
+    pivot = strings[len(strings) // 2]
+    equal = [x for x in strings if x == pivot] #in case the pivot has duplicates
+    less = [x for x in strings if x < pivot]
+    greater = [x for x in strings if x > pivot]
+    
+    return sort_alphanumeric(less) + equal + sort_alphanumeric(greater)
+
+print(sort_alphanumeric(["banana", "apple", "cherry", "123", "567", "45a"]))
