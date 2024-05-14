@@ -1309,3 +1309,45 @@ arr = [5, 3, 8, 2, 7, 1, 6]
 sorted_arr = quickkSort(arr)
 print(sorted_arr)
 
+
+'''
+Problem:
+Write a Python function called sort_even_odd(arr) 
+that sorts an array arr in such a way that all even numbers 
+appear before all odd numbers. The even numbers should be sorted 
+in ascending order, and the odd numbers should be sorted in descending order. 
+You should implement this sorting algorithm using the quick sort algorithm.
+
+For example:
+
+Input: [3, 1, 4, 6, 2, 5]
+Output: [2, 4, 6, 5, 3, 1]
+Input: [9, 8, 7, 6, 5, 4, 3, 2, 1]
+Output: [2, 4, 6, 8, 9, 7, 5, 3, 1]
+Your function should return the sorted array arr.
+'''
+
+def sort_even_odd(arr):
+    # create a even list & odd list
+    even = [x for x in arr if x % 2 == 0]
+    odd = [x for x in arr if x % 2 != 0]
+    # quick sort each list
+    def quicksort(arr):
+        if len(arr) <= 1:
+            return arr
+        
+        pivot = arr[len(arr) // 2]
+        less = [x for x in arr if x < pivot]
+        greater = [x for x in arr if x > pivot]
+        
+        if pivot % 2 == 0:
+            return quicksort(less) + [pivot] + quicksort(greater)
+        
+        return quicksort(greater) + [pivot] + quicksort(less)
+        
+    ascending_even = quicksort(even)
+    descending_odd = quicksort(odd)
+    # merge the lists and return it
+    return ascending_even + descending_odd
+
+print(sort_even_odd([9, 8, 7, 6, 5, 4, 3, 2, 1]))
