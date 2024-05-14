@@ -520,7 +520,7 @@ def max_subarray_sum(arr, k):
 # Example usage:
 arr = [4, 2, 1, 7, 8, 1, 2, 8, 1, 0]
 k = 3
-# print("Maximum sum of subarray of size", k, ":", max_subarray_sum(arr, k))
+print("Maximum sum of subarray of size", k, ":", max_subarray_sum(arr, k))
 
 def sliding_window_template(arr, k):
     left = 0
@@ -1170,7 +1170,7 @@ def max_contiguous_subarray(nums):
 
 
 nums = [0, 1, 0, 1, 1, 0, 0]
-print(max_contiguous_subarray(nums))  # Output: 4
+# print(max_contiguous_subarray(nums))  # Output: 4
 
 
 
@@ -1222,3 +1222,90 @@ def twosum(nums, target):
         else:
             compliments[compliment] = i
     return 'doesnt exist'
+
+def do_binary(arr, target):
+    n = len(arr)
+    
+    mid = n // 2
+    if arr[mid] == target:
+        return mid
+    elif arr[mid] < target:
+        return do_binary(arr[mid:], target)
+    elif arr[mid] > target:
+        return do_binary(arr[:mid], target)
+    return -1
+
+# loop thru first k and get the sum
+# loop thru the next k els and compare & update sum
+
+def slide(arr,k):
+    sum = 0
+    max_sum = sum
+# sum of first 3
+    for i in range(k):
+        sum += arr[i]
+
+    for i in range(len(arr) - k):
+        sum -= arr[i]
+        sum += arr[i+k]
+        
+        max_sum = max(max_sum, sum)
+        
+    return max_sum
+        
+        
+# append the next window el
+# remove the first/old window el
+# get the new sum & compare
+
+
+arr = [4, 2, 1, 7, 8, 1, 2, 8, 1, 0]
+k = 3
+
+def bubbles(arr):
+    n = len(arr)
+    for i in range(n):
+        for j in range(n-1-i):
+            if arr[j] > arr[j+1]:
+                arr[j], arr[j+1] = arr[j+1], arr[j]
+
+
+def quick_sort(arr):
+    if len(arr) <= 1:      # Base case: If the array has 0 or 1 element, it's already sorted.
+        return arr
+    
+    pivot = arr[len(arr) // 2]  # Choose the pivot element (usually middle element)
+    left = [x for x in arr if x < pivot]    # Create a list of elements less than the pivot
+    middle = [x for x in arr if x == pivot]  # Create a list of elements equal to the pivot
+    right = [x for x in arr if x > pivot]   # Create a list of elements greater than the pivot
+    
+    return quick_sort(left) + middle + quick_sort(right)  # Recursively sort left and right sub-arrays
+
+# Test the function
+arr = [5, 3, 8, 2, 7, 1, 6]
+sorted_arr = quick_sort(arr)
+# print(sorted_arr)
+
+
+
+
+
+# find a pivot (middle)
+# create a list of elements less than pivot
+# create a list of elements greater than pivot
+# recursively call the sort function on less and greater lists
+
+def quickkSort(arr):
+    if len(arr) <= 1:
+        return arr
+    
+    pivot = arr[len(arr) // 2]
+    left = [x for x in arr if x < pivot]
+    right = [x for x in arr if x > pivot]
+    
+    return quickkSort(left) + [pivot] + quickkSort(right)
+
+arr = [5, 3, 8, 2, 7, 1, 6]
+sorted_arr = quickkSort(arr)
+print(sorted_arr)
+
