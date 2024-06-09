@@ -1377,4 +1377,36 @@ def sort_alphanumeric(strings):
     
     return sort_alphanumeric(less) + equal + sort_alphanumeric(greater)
 
-print(sort_alphanumeric(["banana", "apple", "cherry", "123", "567", "45a"]))
+# print(sort_alphanumeric(["banana", "apple", "cherry", "123", "567", "45a"]))
+
+def merging(left, right):
+    # init temp list
+    result = []
+    # init pointers
+    i,j = 0, 0
+    # compare values at pointers and append the lesser one
+    while i < len(left) and j < len(right):
+        if left[i] <= right[j]:
+            result.append(left[i])
+            i += 1
+        else:
+            result.append(right[j])
+            j += 1
+    # append any remainders from lesser input (left)
+    result += left[i:]
+    # append any remainders from greater input (right)
+    result += right[j:]
+    # return temp list
+    return result
+
+def merging_sorting(nums):
+    if len(nums) < 2:
+        return nums
+    
+    middle = len(nums) // 2
+    left = merging_sorting(nums[:middle])
+    right = merging_sorting(nums[middle:])
+    
+    return merging(left, right)
+
+print(merging_sorting([9, 8, 7, 6, 5, 4, 3, 2, 1]))
